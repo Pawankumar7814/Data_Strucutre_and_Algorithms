@@ -21,19 +21,23 @@ public class RotateAnArrayByK {
     }
 
     // To rotate the array from K
-    public static int[] rotateArray(int[] arr, int n){
+    public static void rotateArray(int[] arr, int n, int k){
         int[] temp = new int[n];
-        for(int i = 0; i < n; i++){
-            temp[i] = arr[n-i-1];
+        int count = 0;
+        if (k >= 0) System.arraycopy(arr, 0, temp, 0, k);
+        for(int i = k; i < n; i++){
+            arr[count++] = arr[i];
         }
-        return temp;
+        int i =0;
+        while(count < arr.length){
+            arr[count++] = temp[i++];
+        }
     }
 
     public static void main(String[] args) {
         int[] arr = takeInput();
-         arr = rotateArray(arr, arr.length);
-          printArray(arr, arr.length);
-
-
+        int k = sc.nextInt();
+        rotateArray(arr, arr.length,k);
+        printArray(arr, arr.length);
     }
 }
